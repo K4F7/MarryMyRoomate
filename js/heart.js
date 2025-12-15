@@ -23,11 +23,8 @@ heartShape.bezierCurveTo(-1.2, 0.2, -0.6, -0.2, 0, -0.8);
 heartShape.bezierCurveTo(0.6, -0.2, 1.2, 0.2, 1.2, 0.8);
 heartShape.bezierCurveTo(1.2, 1.4, 0, 1.4, 0, 0.8);
 
-// 选择二维或三维：二选一
-// 1) 二维心形
-// const geometry = new THREE.ShapeGeometry(heartShape);
 
-// 2) 三维心形（拉伸厚度）
+//  三维心形（拉伸厚度）
 const geometry = new THREE.ExtrudeGeometry(heartShape, {
   depth: 0.5,
   bevelEnabled: true,
