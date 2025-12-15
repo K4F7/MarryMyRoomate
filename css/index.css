@@ -81,3 +81,10 @@ footer {
   padding: 24px;
   text-align: center;
 }
+
+/* three.js 容器需要可见尺寸 */
+#app {
+  width: 100%;
+  height: 60vh;          /* 或根据需要改为固定高度 */
+  max-width: 960px;      /* 可选：限制最大宽度 */
+}

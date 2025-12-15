@@ -6,6 +6,13 @@
           name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <link rel="stylesheet" href="css/index.css">
+        <!-- 让浏览器能解析 import 'three' -->
+        <script type="importmap">
+          {
+            "imports": { "three": "https://unpkg.com/three@0.159.0/build/three.module.js" }
+          }
+        </script>
+    <script type="module" src="./js/heart.js"></script>
     <title>期末大作业WIP</title>
 </head>
 <body>
@@ -41,6 +48,7 @@
 
     <h1>欢迎来到我们宿舍为舍长写的征婚网站</h1>
     <p>没有什么比给舍友脱单更重要的事了，我们立刻就想到了做这个</p>
+        <div id="app"></div>
 
     </section>
 
