@@ -1,0 +1,83 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+  /* 预留空间，避免被固定的页头遮挡 */
+  padding-top: 64px;
+}
+
+/* 顶部固定的页头 */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* 控制高度与内边距 */
+  padding: 12px 24px;
+}
+
+/* 标识区域 */
+header .logo {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+/* 水平导航 */
+nav ul {
+  list-style: none;
+  display: flex;            /* 水平排列 */
+  gap: 16px;                /* 项目间距 */
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+nav ul li a:hover {
+  background: #f5f5f5;
+}
+
+:root {
+  --header-h: 64px; /* 页头高度，与body的padding-top保持一致 */
+}
+
+body {
+  padding-top: var(--header-h);
+}
+
+/* 第一屏（含固定导航）占满一屏：视口高减去固定页头的高度 */
+#introduction {
+  min-height: calc(100vh - var(--header-h));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* 居中内容 */
+  padding: 24px;
+}
+
+/* 其他版面各自占满一屏 */
+#wetalk,
+#comments {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* 可选：页脚不抢屏 */
+footer {
+  padding: 24px;
+  text-align: center;
+}
