@@ -10,6 +10,7 @@
     <!-- <script type="module" src="./js/heart.js"></script> -->
     <script type="module" src="./js/fireworks.js"></script>
     <script src="./js/buttons.js"></script>
+    <script src="./js/timer.js" defer></script>
     <title>期末大作业WIP</title>
 </head>
 <body>
@@ -32,7 +33,23 @@
 
 <!-- 保留给侧边栏响应式<link rel="stylesheet" href="css/index.css">
 -->
+<aside class="sidebar sidebar-left">
+    <div class="sidebar-content">
+        <h3>单身计时器</h3>
+        <div id="single-timer"></div>
+        <p>凭实力单身</p>
+    </div>
+</aside>
 
+<aside class="sidebar sidebar-right">
+    <div class="sidebar-content">
+        <h3>立即联系</h3>
+        <div class="qr-box">
+            <img src="images/qr.png" alt="请在images目录下添加qr.jpg" class="qr-img">
+        </div>
+        <p>扫码加微信</p>
+    </div>
+</aside>
 
 <!-- 此处保留为 main内容 区域
 -->
