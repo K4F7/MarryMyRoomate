@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnGet) {
         btnGet.addEventListener('click', () => {
-            window.location.href = 'contact.html';
+            // 仅负责跳转到“关于我”页面
+            window.location.href = './subpages/page1.html';
         });
     }
 

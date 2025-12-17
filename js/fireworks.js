@@ -1,5 +1,6 @@
- // import confetti from '../vendor/canvas-confetti/confetti.module.mjs';
+// import confetti from '../vendor/canvas-confetti/confetti.module.mjs';
 
+// 由用户点击页面触发的烟花与音效
 function runFireworks() {
     const duration = 2000;
     const end = Date.now() + duration;
@@ -10,14 +11,9 @@ function runFireworks() {
     const bgm = new Audio('audio/wedding_march.mp3');
     bgm.loop = true;
 
-    // Attempt to play BGM
+    // 在用户点击事件中调用时，一般不会被自动播放策略拦截
     bgm.play().catch(error => {
-        console.log("Autoplay prevented for BGM. Waiting for user interaction.", error);
-        const playOnInteraction = () => {
-            bgm.play();
-            document.removeEventListener('click', playOnInteraction);
-        };
-        document.addEventListener('click', playOnInteraction);
+        console.log("BGM play failed, maybe due to browser policy:", error);
     });
 
     let lastPopTime = 0;
@@ -55,12 +51,36 @@ function runFireworks() {
     }());
 }
 
-// Check if we have already shown the fireworks in this session
-if (!sessionStorage.getItem('hasSeenFireworks')) {
-    // Wait a brief moment for the page to settle
-    setTimeout(() => {
-        runFireworks();
-        sessionStorage.setItem('hasSeenFireworks', 'true');
-    }, 500);
-}
+// 通过点击页面任意位置触发烟花与音乐，适配 file:// 打开
+(function setupFireworksTrigger() {
+    // 如果浏览器是通过 file:// 打开，给一点提示（控制台）
+    if (window.location.protocol === 'file:') {
+        console.log('当前通过 file:// 打开，本地音频可能会被某些浏览器限制，如无声音请考虑使用本地服务器方式（http://localhost:...）。');
+    }
 
+    let hasTriggered = false;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // 如果本会话已经看过烟花，就不再触发
+        try {
+            if (sessionStorage.getItem('hasSeenFireworks')) {
+                hasTriggered = true;
+            }
+        } catch (e) {
+            // 忽略 sessionStorage 异常
+        }
+
+        // 在 body 上监听一次点击事件
+        document.body.addEventListener('click', () => {
+            if (hasTriggered) return;
+            hasTriggered = true;
+
+            runFireworks();
+            try {
+                sessionStorage.setItem('hasSeenFireworks', 'true');
+            } catch (e) {
+                // 某些隐私模式可能禁止 sessionStorage，忽略即可
+            }
+        }, { once: false });
+    });
+})();
