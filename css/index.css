@@ -156,8 +156,55 @@ body {
 
 /* 可选：页脚不抢屏 */
 footer {
-  padding: 24px;
+  background-color: #ffffff;
+  color: #666;
+  padding: 40px 20px;
   text-align: center;
+  margin-top: 40px;
+  border-top: 1px solid #eaeaea;
+  box-shadow: none;
+}
+
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: #555;
+  text-decoration: none;
+  margin: 0 12px;
+  font-size: 14px;
+  transition: color 0.2s;
+  font-weight: 500;
+}
+
+.footer-links a:hover {
+  color: #4CAF50;
+}
+
+.disclaimer {
+  font-size: 12px !important; /* Override generic p style if needed */
+  color: #aaa !important;
+  font-style: italic;
+}
+
+.copyright {
+  font-size: 14px;
+  color: #888;
+}
+
+.credits {
+  font-weight: 600;
+  color: #333;
+  margin-top: 8px;
 }
 
 /* Buttons container */
