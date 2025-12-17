@@ -1,4 +1,4 @@
-import confetti from '../vendor/canvas-confetti/confetti.module.mjs';
+ // import confetti from '../vendor/canvas-confetti/confetti.module.mjs';
 
 function runFireworks() {
     const duration = 2000;
