@@ -275,6 +275,124 @@ footer {
   font-size: 12px;
 }
 
+/* Wetalk Section Specifics */
+#wetalk h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.reviews-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+}
+
+.review-card {
+  background-color: transparent;
+  width: 300px;
+  height: 320px; /* Fixed height for flip effect */
+  perspective: 1000px; /* Enable 3D space */
+  /* Remove old layout styles as they are now on faces */
+  padding: 0;
+  box-shadow: none;
+  display: block;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* .review-card:hover .card-inner {
+  transform: rotateY(180deg);
+} */
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background: #f9f9f9;
+}
+
+.card-front {
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.card-back {
+  background-color: #fff;
+  transform: rotateY(180deg);
+  border: 1px solid #eee;
+}
+
+.card-front h3 {
+  margin-top: 10px;
+  font-size: 20px;
+  color: #333;
+}
+
+.card-front p {
+  margin-top: 5px;
+  color: #888;
+  font-size: 14px;
+}
+
+/* Adjust hover effect to not conflict with flip */
+/* .review-card:hover { transform: translateY(-10px); } - Removed to avoid conflict with 3D transform */
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #ddd;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #fff;
+  font-size: 20px;
+}
+
+.avatar-1 { background-color: #FF6B6B; }
+.avatar-2 { background-color: #4ECDC4; }
+.avatar-3 { background-color: #FFE66D; color: #333; }
+
+.review-content h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
+}
+
+.review-content p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+  font-style: italic;
+}
+
 /* Responsive: Hide sidebars on small screens */
 @media (max-width: 1350px) {
   .sidebar {
