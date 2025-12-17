@@ -8,16 +8,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (btnLeave) {
-        btnLeave.addEventListener('mouseover', () => {
-            const x = Math.random() * (window.innerWidth - btnLeave.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btnLeave.offsetHeight);
+    const introSection = document.getElementById('introduction');
 
-            btnLeave.style.position = 'fixed';
+    if (btnLeave && introSection) {
+        btnLeave.addEventListener('mouseover', () => {
+            // Ensure the section is the positioning context
+            if (window.getComputedStyle(introSection).position === 'static') {
+                introSection.style.position = 'relative';
+            }
+
+            const maxX = introSection.clientWidth - btnLeave.offsetWidth;
+            const maxY = introSection.clientHeight - btnLeave.offsetHeight;
+
+            const x = Math.random() * Math.max(0, maxX);
+            const y = Math.random() * Math.max(0, maxY);
+
+            btnLeave.style.position = 'absolute';
             btnLeave.style.left = `${x}px`;
             btnLeave.style.top = `${y}px`;
-            btnLeave.style.zIndex = '1000'; // Ensure it's on top
         });
     }
 });
-

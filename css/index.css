@@ -245,7 +245,7 @@ footer {
 .timer-num {
   font-weight: 700;
   color: #e91e63; /* Pink/Red for emphasis */
-  font-size: 32px;
+  font-size: 20px;
   font-family: monospace;
 }
 
@@ -391,6 +391,129 @@ footer {
   color: #555;
   line-height: 1.6;
   font-style: italic;
+}
+
+/* Comments Section Styles */
+.comments-container {
+  width: 100%;
+  max-width: 800px; /* Limit width for better readability */
+  background: #fff;
+  border-radius: 12px;
+  /* padding: 20px;  Already padded by parent section */
+}
+
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.comment-item {
+  display: flex;
+  gap: 16px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.comment-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #fff;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.comment-author {
+  font-weight: 600;
+  color: #333;
+  font-size: 16px;
+}
+
+.comment-date {
+  font-size: 12px;
+  color: #999;
+}
+
+.comment-text {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Fake Comment Form */
+.comment-form {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #f5f5f5;
+}
+
+.form-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #fff;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.form-input-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.form-input-wrapper textarea {
+  width: 100%;
+  height: 80px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  resize: none;
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.form-input-wrapper textarea:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+.btn-small {
+  padding: 8px 20px;
+  font-size: 14px;
 }
 
 /* Responsive: Hide sidebars on small screens */

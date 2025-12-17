@@ -6,17 +6,19 @@ function updateTimer() {
     
     const diff = now - birthDate;
     
-    // Calculate total days
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    // Calculate total seconds and milliseconds
+    const totalSeconds = Math.floor(diff / 1000);
+    const milliseconds = diff % 1000;
     
     const timerElement = document.getElementById('single-timer');
     if (timerElement) {
+        const msStr = milliseconds.toString().padStart(3, '0');
         timerElement.innerHTML = `
-            <div class="timer-item"><span class="timer-num">${days}</span> 天</div>
+            <div class="timer-item"><span class="timer-num">${totalSeconds}</span> 秒</div>
+            <div class="timer-item"><span class="timer-num">${msStr}</span> 毫秒</div>
         `;
     }
 }
 
-setInterval(updateTimer, 1000);
+setInterval(updateTimer, 10);
 document.addEventListener('DOMContentLoaded', updateTimer);
-
