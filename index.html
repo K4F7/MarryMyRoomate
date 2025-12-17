@@ -6,13 +6,10 @@
           name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <link rel="stylesheet" href="css/index.css">
-        <!-- 让浏览器能解析 import 'three' -->
-        <script type="importmap">
-          {
-            "imports": { "three": "https://unpkg.com/three@0.159.0/build/three.module.js" }
-          }
-        </script>
-    <script type="module" src="./js/heart.js"></script>
+    <!-- 移除爱心效果脚本 -->
+    <!-- <script type="module" src="./js/heart.js"></script> -->
+    <script type="module" src="./js/fireworks.js"></script>
+    <script src="./js/buttons.js"></script>
     <title>期末大作业WIP</title>
 </head>
 <body>
@@ -37,7 +34,6 @@
 -->
 
 
-
 <!-- 此处保留为 main内容 区域
 -->
 
@@ -45,34 +41,62 @@
 
     <!--此处包裹第一屏的内容 此处为简单介绍-->
     <section id="introduction">
+        <div class="intro-top">
+            <div class="intro-left">
+                <h1>欢迎来到我们宿舍为舍长写的征婚网站</h1>
 
-    <h1>欢迎来到我们宿舍为舍长写的征婚网站</h1>
-    <p>没有什么比给舍友脱单更重要的事了，我们立刻就想到了做这个</p>
-        <div id="app"></div>
+                <p>没有什么比给舍友脱单更重要的事了，我们立刻就想到了做这个。</p>
 
+                <p>注意！这里都是人类！</p>
+            </div>
+            <!-- 移除爱心容器 #app -->
+            <!-- <div id="app"></div> -->
+        </div>
+        <div class="intro-right">
+            <!-- 放照片：替换下面的占位图 -->
+            <div class="intro-item">
+                <img src="./images/P1.jpg" alt="照片位">
+                <div class="intro-pic">工作是工作，生活是什么，没想到大壮还是个歌手</div>
+            </div>
+            <div class="intro-item">
+                <img src="./images/P2.jpg" alt="照片位">
+                <div class="intro-pic">跟着自己的好朋友在成都旅游，一起看圆圆的大熊猫</div>
+            </div>
+        </div>
+        
+        <div class="intro-actions">
+            <button id="btn-get" class="btn btn-green">立即领取</button>
+            <button id="btn-leave" class="btn btn-red">离开</button>
+        </div>
     </section>
 
     <!--此处包裹为第二屏内容 此处为主要事件 三位舍友的评价 -->
+
     <section id="wetalk">
-    <h2>舍友锐评</h2>
+        <h2>舍友锐评</h2>
+
         <p>三位导师的评价</p>
 
-    <article class="1"></article>
+        <article class="1"></article>
+
+        <p>室友关林:大壮十分勤奋，每每夜深人静，他们都睡了的时候，我都可以听到他敲击键盘的声音(无奈)</p>
 
 
+        <article class="2"></article>
 
-    <article class="2"></article>
+        <p>室友佳明:哈哈哈哈，他就是闷骚，外表高冷，实际上熟起来比谁都开放(狗头)</p>
 
 
+        <article class="3"></article>
 
-    <article class="3"></article>
+        <p>室友井颂:小壮同志，我看还是很好滴，就是他要是以后天天帮我晨点的话就更好了(星星眼)</p>
 
     </section>
 
     <!-- 此处为 网友评论区 （假）-->
     <section id="comments">
 
-    <h2>评论区</h2>
+        <h2>评论区</h2>
 
     </section>
 </main>

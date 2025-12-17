@@ -56,14 +56,78 @@ body {
 }
 
 /* 第一屏（含固定导航）占满一屏：视口高减去固定页头的高度 */
+/* 语言：css */
+/* 文件：'css/index.css' */
 #introduction {
   min-height: calc(100vh - var(--header-h));
   display: flex;
+  flex-direction: column;   /* 改为上下布局 */
+  align-items: center;      /* 居中对齐 */
+  justify-content: flex-start;
+  gap: 24px;
+  padding: 24px;
+  max-width: 1080px;   /* 控制行长，避免过宽导致阅读困难 */
+  margin: 0 auto;      /* 居中整体内容 */
+}
+
+#introduction .intro-top {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center; /* 改为居中对齐，让 intro-left 处于中间 */
+  align-items: center;
+  gap: 24px;
+}
+
+#introduction .intro-left {
+  /* flex: 1; Removed to keep content compact */
+  text-align: center; /* 文案居中 */
+  margin: 0 auto;     /* 容器居中（在可用宽度内） */
+}
+
+#introduction h1 {
+  font-size: 32px;          /* 放大标题 */
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+#introduction p {
+  font-size: 18px;          /* 放大段落 */
+  color: #333;
+  margin-bottom: 16px;
+}
+
+#introduction .intro-right {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;  /* 改为顶部对齐，避免高度不同导致的不整齐 */
+  justify-content: center;
+  flex-direction: row;      /* 图片横向排列 */
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+#introduction .intro-item {
+  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* 居中内容 */
-  padding: 24px;
+  width: 300px;
 }
+
+#introduction .intro-right img {
+  width: 100%;              /* 图片占满容器 */
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+#introduction .intro-pic {
+  margin-top: 8px;
+  font-size: 16px;
+  color: #555;
+  text-align: center;
+}
+
 
 /* 其他版面各自占满一屏 */
 #wetalk,
@@ -82,9 +146,36 @@ footer {
   text-align: center;
 }
 
-/* three.js 容器需要可见尺寸 */
-#app {
+/* Buttons container */
+.intro-actions {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  justify-content: center;
   width: 100%;
-  height: 60vh;          /* 或根据需要改为固定高度 */
-  max-width: 960px;      /* 可选：限制最大宽度 */
+}
+
+.btn {
+  padding: 12px 24px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.btn-green {
+  background-color: #4CAF50;
+}
+
+.btn-green:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.btn-red {
+  background-color: #f44336;
+  position: relative; /* To allow movement */
 }

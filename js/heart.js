@@ -1,6 +1,6 @@
 // js
-// 导入 three.js 模块
-import * as THREE from 'three';
+// 导入 three.js 模块（本地相对路径）
+import * as THREE from '../vendor/three/three.module.js';
 
 // 基础初始化
 const app = document.getElementById('app');
@@ -8,7 +8,7 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xffffff);
 
 const camera = new THREE.PerspectiveCamera(60, app.clientWidth / app.clientHeight, 0.1, 1000);
-camera.position.set(0, 2, 6);
+camera.position.set(0, 0.5, 5);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(app.clientWidth, app.clientHeight);
