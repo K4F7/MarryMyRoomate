@@ -1,0 +1,287 @@
+<!-- page1.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>物种档案 | 拯救大刘</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* 页面1特有样式 */
+        .profile-header {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+             position: relative; /* 为伪元素定位 */
+            padding: 20px; /* 内边距增加层次感 */
+            border-radius: 12px; /* 圆角优化 */
+            z-index: 1; /* 确保内容在伪元素上方 */
+            overflow: hidden; /* 防止模糊后的图片超出容器 */
+        }
+        /* 背景模糊效果 */
+        .profile-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* 1. 加载背景图（替换成你的图片路径） */
+            background: url(../images/背景.jpg) center/cover no-repeat;
+            /* 2. 模糊图片（数值越大越模糊） */
+            filter: blur(4px);
+            /* 3. 图片放大一点，避免模糊后边缘露白 */
+            transform: scale(1.05);
+            /* 4. 叠加半透明蒙版（增强文字可读性，可调整） */
+            box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.5);
+            z-index: -1; /* 放在内容下方 */
+        }
+        /* 头像样式 */
+        .avatar-large {
+            width: 200px;
+            height: 200px;
+            background: #ccc;
+            border-radius: 50%;
+            flex-shrink: 0;
+            border: 5px solid var(--theme-color);
+            overflow: hidden;
+        }
+        /* 头像图片自适应 */
+        .avatar-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* 个人属性样式 */
+        .profile-stats {
+            flex: 1;
+        }
+         /*进度条颜色设置*/
+        :root {
+            --color-intelligence: #f335c4b9;
+            --color-emotion: #ff6b81cf;
+            --color-housework: #ffa602ad;
+            --color-survival: #2ed574b5;
+            --color-wallet: #1e8fffb7;
+        }
+        /* 属性进度条样式 */
+        .attribute-bar {
+            background: #eee;
+            height: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        /* 进度条填充动画 */
+        .attribute-fill {
+            height: 100%;
+            background: var(--theme-color);
+            line-height: 20px;
+            color: white;
+            font-size: 12px;
+            padding-left: 10px;
+            animation: fillBar 1.5s ease forwards;
+            width: 0%;
+            border-radius: 10px;
+        }
+        /* 进度条填充动画关键帧 */
+        @keyframes fillBar {
+            to {
+                width: var(--w);
+                /* 动画终点：宽度等于自定义 CSS 变量 --w 的值 */
+            }
+        }
+        /* 标签样式 */
+        .tags span {
+            display: inline-block;
+            background: #17e25b;
+            color: #2f3542;
+            padding: 5px 10px;
+            margin: 5px 5px 5px 0;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+        /* 证言样式 */
+        .testimonial {
+            background-color: #fff;
+            border: 2px dashed var(--theme-color);
+            padding: 30px;
+            margin-top: 40px;
+            position: relative;
+        }
+        /* 引号样式 */
+        .quote-mark {
+            font-size: 60px;
+            color: var(--theme-color);
+            opacity: 0.2;
+            position: absolute;
+            top: 0;
+            left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">大刘 <span>档案室</span></div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">首页动态</a></li>
+                <li><a href="page1.html" class="active">物种档案</a></li>
+                <li><a href="page2.html">真容曝光</a></li>
+                <li><a href="page3.html">择偶标准</a></li>
+                <li><a href="page4.html">联系大刘</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- T型布局容器 -->
+    <div class="t-layout-container">
+
+        <h1 class="section-title">📁 档案编号：NO.9999 - 大刘</h1>
+
+        <div class="profile-header">
+            <div class="avatar-large">
+                <div class="img-placeholder" style="width:100%; height:100%;"><img src="../images/大刘头像.jpg" alt="由于害羞大刘已跑路"></div>
+            </div>
+            <div class="profile-stats">
+                <h2>基础属性</h2>
+                <p><strong>全名：</strong> 大刘 (Da Liu)</p>
+                <p><strong>职业：</strong> 代码搬运工 / 国家一级保护飞物</p>
+                <p><strong>产地：</strong> 北纬27°48′~29°42′，东经116°13′~118°29′（江西省上饶市）</p>
+                <p><strong>出厂日期：</strong> 2007年</p>
+                <p><strong>保质期：</strong> 终生（只要有人喂饭）</p>
+                <br>
+                <div class="tags">
+                    <span>#技术宅</span>
+                    <span>#怕蟑螂</span>
+                    <span>#强迫症</span>
+                    <span>#文艺青年</span>
+                    <span>#外冷内热</span>
+                    <span>#经济适用男</span>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <hr><br>
+
+        <h2 class="section-title">📊 战斗力雷达图 (伪)</h2>
+
+        <div class="card">
+            <h4>智力 (Coding Ability)</h4>
+            <div class="attribute-bar">
+                <div class="attribute-fill" style="--w: 85%; background: var(--color-intelligence);">85% - 头发越少越强</div>
+            </div>
+
+            <h4>情商 (Romantic Sense)</h4>
+            <div class="attribute-bar">
+                <div class="attribute-fill" style="--w: 15%; background: var(--color-emotion);">15% - 极度濒危</div>
+            </div>
+
+            <h4>家务 (Housework)</h4>
+            <div class="attribute-bar">
+                <div class="attribute-fill" style="--w: 100%; background: var(--color-housework);">100% - 洗碗拖地样样精通</div>
+            </div>
+
+            <h4>生存能力 (Survival)</h4>
+            <div class="attribute-bar">
+                <div class="attribute-fill" style="--w: 95%; background: var(--color-survival);">95% - 泡面达人</div>
+            </div>
+
+            <h4>财力 (Wallet)</h4>
+            <div class="attribute-bar">
+                <div class="attribute-fill" style="--w: 60%; background: var(--color-wallet);">60% - 全用来参加比赛了</div>
+            </div>
+        </div>
+
+        <br>
+
+        <h2 class="section-title">🧬 详细生态习性</h2>
+        <p><strong>1. 作息时间：</strong><br>
+            典型的猫头鹰型生物。白天处于待机状态，眼神涣散；一到晚上10点，双眼放光，精神抖擞，开始在键盘上疯狂输出。</p>
+
+        <p><strong>2. 饮食偏好：</strong><br>
+            主食为碳水化合物（面条、米饭）。对肉类有极高的渴望。喝奶茶必加波霸。无法理解为什么有人吃香菜。</p>
+
+        <p><strong>3. 社交能力：</strong><br>
+            线上社交牛逼症：表情包存量 5GB+，网络聊天骚话连篇，如果他没有秒回你，那他一定是在找表情包。<br>
+            线下社交恐惧症：见到异性会触发“沉默”Buff，说话结巴，脸红耳赤，带有少年特有的羞涩。</p>
+
+        <p><strong>4. 奇怪的癖好：</strong><br>
+            喜欢收集各种颜色的网线。看到乱糟糟的线缆如果不理顺会很难受。睡觉必须抱着特定的抱枕。</p>
+
+
+        <br>
+        <hr><br>
+
+        <h2 class="section-title">👩‍👧‍👦亲友介绍</h2>
+
+        <div class="testimonial">
+            <span class="quote-mark">“</span>
+            <p>大刘是个好孩子，就是有点傻。上次让他买醋，他买了酱油。但只要你如果不让他干活，他还是很乖的。</p>
+            <p style="text-align: right; font-weight: bold; margin-top: 10px;">—— 大刘的妈妈</p>
+        </div>
+
+        <div class="testimonial">
+            <span class="quote-mark">“</span>
+            <p>虽然这班长总爱耍帅，总幻想着自己是全世界的男神，不过他人确实不错的~</p>
+            <p style="text-align: right; font-weight: bold; margin-top: 10px;">—— 亲爱的M同学</p>
+        </div>
+
+        <div class="testimonial">
+            <span class="quote-mark">“</span>
+            <p>自从大刘来了我们班上做班长要么加班，要么就在做表格。但他从来不抱怨，这种牛马精神...哦不，奉献精神，值得在婚姻中推广。</p>
+            <p style="text-align: right; font-weight: bold; margin-top: 10px;">—— 大学班主任</p>
+        </div>
+
+        <div class="testimonial">
+            <span class="quote-mark">“</span>
+            <p>喵喵喵，喵喵！（翻译：铲屎的还算准时，虽然偶尔会踩到我尾巴。）</p>
+            <p style="text-align: right; font-weight: bold; margin-top: 10px;">—— 家里的猫</p>
+        </div>
+
+        
+
+        <div style="height: 100px;"></div>
+
+        <br><br>
+        
+        
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer><!-- 页脚内容 -->
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="./index.html">首页动态</a>
+            <a href="subpages/page1.html">物种档案</a>
+            <a href="subpages/page2.html">真容曝光</a>
+            <a href="subpages/page3.html">择偶标准</a>
+            <a href="subpages/page4.html">联系大刘
+            </a>
+        </div>
+        <p class="disclaimer">免责声明：本网站内容纯属娱乐，最终解释权归305宿舍所有 (狗头)</p>
+        <p class="copyright">© 2024 期末大作业WIP. 保留所有权利。</p>
+        <p class="credits">305宿舍用爱与魔法制作 <span style="color: #e91e63;">❤</span></p>
+    </div>
+</footer>
+
+</body>
+
+</html>

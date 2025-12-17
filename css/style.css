@@ -1,0 +1,515 @@
+/* style.css */
+/* 
+ * ==========================================================================
+ * 项目名称: 拯救大龄留守青年大壮 (Save Big Zhuang)
+ * 文件名称: style.css
+ * 描述: 全局通用样式表，包含所有页面的布局、配色和组件样式。
+ * 作者: 绝望的室友 (The Desperate Roommate)
+ * 版本: 2.0 Enhanced
+ * ==========================================================================
+ */
+
+/*
+ * --------------------------------------------------------------------------
+ * 1. CSS 变量定义 (Variables)
+ * --------------------------------------------------------------------------
+ */
+:root {
+    /* 主题色系 */
+    --theme-color:#f8a4ce;       /* 主色：蜜桃粉，象征渴望爱情 */
+    --theme-hover: #da4607;       /* 悬停色：深红 */
+    --theme-light: #ffeaa7;       /* 浅色点缀 */
+
+    /* 背景色系 */
+    --bg-color: #f1f2f6;          /* 网页背景灰 */
+    --card-bg: #ffffff;           /* 卡片背景白 */
+    --sidebar-bg: #ffffff;        /* 侧边栏背景 */
+
+    /* 文本色系 */
+    --text-main: #2f3542;         /* 主要文字黑 */
+    --text-secondary: #57606f;    /* 次要文字灰 */
+    --text-light: #a4b0be;        /* 浅色文字 */
+    --link-color: #3742fa;        /* 链接颜色 */
+
+    /* 尺寸变量 */
+    --header-height: 80px;
+    --footer-height: 120px;
+    --sidebar-width: 280px;       /* 侧边栏宽度 */
+    --main-width: 1200px;         /* T型布局主体宽度 */
+    --container-max-width: 1400px;/* 首页最大宽度 */
+
+    /* 间距变量 */
+    --gap-std: 20px;
+    --padding-std: 20px;
+    --border-radius: 8px;
+
+    /* 阴影变量 */
+    --shadow-sm: 0 2px 5px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 10px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/*
+ * --------------------------------------------------------------------------
+ * 2. 全局重置与基础样式 (Reset & Base)
+ * --------------------------------------------------------------------------
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::selection {
+    background-color: var(--theme-color);
+    color: #fff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ========== 覆盖后的核心样式（融合目标header样式） ========== */
+:root {
+    --header-h: 64px; /* 页头高度，与body的padding-top保持一致 */
+    /* 保留原文件变量，避免样式失效 */
+    --theme-color: #f8a4ce; /* 示例值，可根据实际需求调整 */
+    --bg-color: #f7f9fc;
+    --text-main: #333;
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.6;
+    padding-top: var(--header-h); /* 预留空间，避免被固定的页头遮挡 */
+    background-color: #f7f9fc;
+    /* 保留原文件body属性 */
+    color: var(--text-main);
+    font-size: 16px;
+    overflow-x: hidden; /* 防止水平滚动条 */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--theme-color);
+}
+
+ul, ol {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 15px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--text-main);
+}
+
+p {
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/*
+ * --------------------------------------------------------------------------
+ * 3. 头部样式 (Header) - 完全替换为目标样式
+ * --------------------------------------------------------------------------
+ */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* 控制高度与内边距 */
+    padding: 12px 24px;
+    /* 清除原文件header的冲突样式 */
+    height: auto;
+    box-shadow: none;
+    position: fixed !important; /* 强制固定定位，覆盖原sticky */
+}
+
+/* 标识区域 */
+header .logo {
+    font-weight: 700;
+    font-size: 18px;
+    /* 清除原文件logo的冲突样式 */
+    color: #333;
+    cursor: default;
+    display: inline-block;
+}
+
+header .logo span {
+    /* 清除原文件logo span的冲突样式 */
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+    margin-left: 0;
+    font-size: inherit;
+    box-shadow: none;
+}
+
+/* 水平导航 */
+nav ul {
+    list-style: none;
+    display: flex;            /* 水平排列 */
+    gap: 16px;                /* 项目间距 */
+    /* 清除原文件nav ul的冲突样式 */
+}
+
+nav ul li {
+    /* 清除原文件li的冲突样式 */
+    position: static;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 10px;
+    border-radius: 6px;
+    /* 清除原文件a的冲突样式 */
+    font-weight: normal;
+    font-size: inherit;
+    display: inline-block;
+    background: transparent;
+    box-shadow: none;
+}
+
+nav ul li a:hover {
+    background: #f5f5f5;
+    /* 清除原文件hover的冲突样式 */
+    color: #333;
+    transform: none;
+}
+
+/* 保留active样式，但适配新header */
+nav ul li a.active {
+    background: #f5f5f5;
+    color: #333;
+    font-weight: 500;
+    /* 清除原文件active的冲突样式 */
+    box-shadow: none;
+}
+
+/*
+ * --------------------------------------------------------------------------
+ * 4. 底部样式 (Footer)
+ * --------------------------------------------------------------------------
+ */
+footer {
+  background-color: #ffffff;
+  color: #666;
+  padding: 40px 20px;
+  text-align: center;
+  margin-top: 40px;
+  border-top: 1px solid #eaeaea;
+  box-shadow: none;
+}
+
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: #555;
+  text-decoration: none;
+  margin: 0 12px;
+  font-size: 14px;
+  transition: color 0.2s;
+  font-weight: 500;
+}
+
+.footer-links a:hover {
+  color: #4CAF50;
+}
+
+.disclaimer {
+  font-size: 12px !important; /* Override generic p style if needed */
+  color: #aaa !important;
+  font-style: italic;
+  text-align: center;
+}
+
+.copyright {
+  font-size: 14px;
+  color: #888;
+  text-align: center;
+}
+
+.credits {
+  font-weight: 600;
+  color: #333;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/*
+ * --------------------------------------------------------------------------
+ * 5. 布局容器 (Layout Containers)
+ * --------------------------------------------------------------------------
+ */
+
+/* 首页 "口" 字型布局 */
+/* 结构: Sidebar(Left) - Main Content - Sidebar(Right) */
+.kou-layout-container {
+    display: flex;
+    justify-content: center;
+    width: 95%;
+    max-width: var(--container-max-width);
+    margin: 30px auto;
+    gap: 25px;
+    /* 强制高度要求：300vh 由内容撑开，但我们设置最小高度确保 */
+    min-height: 300vh;
+}
+
+/* 侧边栏样式 */
+.sidebar {
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+    height: fit-content; /* 随内容自动高度 */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar-widget {
+    background: var(--sidebar-bg);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid #eee;
+}
+
+.sidebar-widget h3 {
+    border-bottom: 2px solid var(--theme-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+/* 中间主要内容区 */
+.main-content-center {
+    flex: 1;
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    min-width: 0; /* 防止flex子项溢出 */
+}
+
+/* 子页面 "T" 字型布局 */
+/* 结构: Header (fixed) -> Container (Single Column) */
+.t-layout-container {
+    width: var(--main-width);
+    max-width: 95%;
+    margin: 40px auto;
+    background: var(--card-bg);
+    padding: 60px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    min-height: 200vh; /* 强制高度要求 */
+    position: relative;
+}
+
+/*
+ * --------------------------------------------------------------------------
+ * 6. 通用组件 (Components)
+ * --------------------------------------------------------------------------
+ */
+
+/* 标题装饰 */
+.section-title {
+    font-size: 32px;
+    color: var(--text-main);
+    margin-bottom: 30px;
+    position: relative;
+    padding-left: 15px;
+    border-left: 8px solid var(--theme-color);
+}
+
+/* 卡片组件 */
+.card {
+    background: #fff;
+    border: 1px solid #e1e1e1;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    margin-bottom: 25px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--theme-light);
+}
+
+/* 按钮组件 */
+.btn {
+    display: inline-block;
+    background-color: var(--theme-color);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(255, 107, 129, 0.3);
+}
+
+.btn:hover {
+    background-color: var(--theme-hover);
+    color: white;
+    box-shadow: 0 6px 12px rgba(255, 107, 129, 0.4);
+    transform: translateY(-2px);
+}
+
+/* 列表样式 */
+.funny-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    position: relative;
+    padding-left: 25px;
+}
+
+.funny-list li:last-child {
+    border-bottom: none;
+}
+
+.funny-list li::before {
+    content: "👉";
+    position: absolute;
+    left: 0;
+    top: 8px;
+}
+
+/*
+ * --------------------------------------------------------------------------
+ * 7. 特殊元素样式 (Animations & Misc)
+ * --------------------------------------------------------------------------
+ */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.highlight-text {
+    color: var(--theme-color);
+    font-weight: bold;
+}
+
+/* 表单样式 */
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #eee;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--theme-color);
+}
+
+/* 占位符图片盒子 */
+.img-placeholder-box {
+    background-color: #dfe6e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #636e72;
+    font-weight: bold;
+    border: 2px dashed #b2bec3;
+}
+
+/*
+ * --------------------------------------------------------------------------
+ * 8. 媒体查询 (Media Queries) - 保持响应式
+ * --------------------------------------------------------------------------
+ */
+@media (max-width: 1200px) {
+    .kou-layout-container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .sidebar-widget {
+        flex: 1;
+        min-width: 300px;
+    }
+    .t-layout-container {
+        width: 90%;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 0 20px;
+        height: auto;
+        flex-direction: column;
+        padding-bottom: 15px;
+    }
+    nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .sidebar {
+        flex-direction: column;
+    }
+    
+
+}

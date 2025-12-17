@@ -1,0 +1,468 @@
+<!-- page2.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>照骗与真相 | 拯救大壮</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* 页面2特有样式 */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+        /* 照片卡片样式 */
+        .photo-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        /* 照片展示区域 */
+        .photo-box {
+            height: 250px;
+            background-color: #eee;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 20px;
+            overflow: hidden;
+        }
+        /* 照片说明文字 */
+        .caption {
+            font-size: 14px;
+            color: #555;
+            font-style: italic;
+        }
+        /* 警告提示样式 */
+        .warning {
+            background-color: #ffeaa7;
+            padding: 15px;
+            border-left: 5px solid #fdcb6e;
+            margin-bottom: 20px;
+        }
+
+        /* ========== 轮播美化样式 ========== */
+        /* 轮播整体容器：强化视觉层次 */
+        .carousel-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        /* 轮播装饰背景（增加氛围感） */
+        .carousel-container::before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 100%;
+            background: linear-gradient(120deg, #fff3e0 0%, #ffeaa7 100%);
+            opacity: 0.3;
+            border-radius: 16px;
+            z-index: -1;
+        }
+
+        /* 两侧缩略图：精致卡片质感 */
+        .carousel-thumb {
+            width: 120px;
+            height: 80px;
+            cursor: pointer;
+            border-radius: 12px;
+            overflow: hidden;
+            opacity: 0.75;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 3px solid #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        /* 缩略图悬停：立体效果+高亮 */
+        .carousel-thumb:hover {
+            opacity: 1;
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 8px 20px rgba(253, 203, 110, 0.25);
+            border-color: #fdcb6e;
+        }
+
+        /* 缩略图遮罩（增加层次感） */
+        .carousel-thumb::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.1) 100%);
+            z-index: 1;
+        }
+
+        /* 缩略图图片 */
+        .thumb-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .carousel-thumb:hover .thumb-img {
+            transform: scale(1.05);
+        }
+
+        /* 主轮播容器：高级卡片质感 */
+        .main-carousel {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 20px;
+            border: 5px solid #fff;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            background: #fff;
+        }
+
+        /* 主图容器：平滑过渡 */
+        .main-imgs {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* 主图样式：增加细节 */
+        .main-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            flex-shrink: 0;
+            transition: filter 0.3s ease;
+        }
+
+        .main-carousel:hover .main-img {
+            filter: brightness(1.02);
+        }
+
+        /* 主轮播左右按钮：精致悬浮按钮 */
+        .main-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #fdcb6e;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main-btn.prev { 
+            left: -25px; 
+            padding-right: 2px;
+        }
+
+        .main-btn.next { 
+            right: -25px; 
+            padding-left: 2px;
+        }
+
+        /* 按钮悬停效果 */
+        .main-btn:hover {
+            background: #fdcb6e;
+            color: #fff;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 15px rgba(253, 203, 110, 0.4);
+        }
+
+        /* 按钮点击反馈  缩小*/
+        .main-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        /* 轮播标题：趣味样式 */
+        .carousel-title {
+            text-align: center;
+            font-size: 22px;
+            color: #e17055;
+            margin: 30px 0 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        /* 标题下划线装饰 */
+        .carousel-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #fdcb6e, #e17055);
+            border-radius: 3px;
+        }
+
+        /* 主轮播底部文字提示 */
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+            color: #fff;
+            font-size: 16px;
+            font-style: italic;
+            z-index: 5;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+
+        .main-carousel:hover .carousel-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">大刘 <span>黑历史馆</span></div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">首页动态</a></li>
+                <li><a href="page1.html">物种档案</a></li>
+                <li><a href="page2.html" class="active">真容曝光</a></li>
+                <li><a href="page3.html">择偶标准</a></li>
+                <li><a href="page4.html">联系大刘</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- T型布局 -->
+    <div class="t-layout-container">
+
+        <h1 class="section-title">📷 照骗 vs 真相</h1>
+
+        <div class="warning">
+            <p>⚠️ <strong>高能预警：</strong> 以下图片可能含有令人不适的帅气（或者傻气）。请确保在无人在场时观看，以免笑出猪叫。</p>
+        </div>
+
+        <!-- ========== 新增美化轮播区域 ========== -->
+        <h2 class="carousel-title">🎬 大壮名场面轮播</h2>
+        <div class="carousel-container">
+            <!-- 左侧缩略图（上一张） -->
+            <div class="carousel-thumb" id="prevThumb">
+                <img src="" alt="上一张缩略图" class="thumb-img" id="prevThumbImg">
+            </div>
+
+            <!-- 中间主轮播 -->
+            <div class="main-carousel">
+                <div class="main-imgs" id="mainImgs">
+                    <!-- 轮播图片：复用页面原有图片，绑定描述 -->
+                    <img src="../images/精选1.jpg" alt="45度仰天" class="main-img" data-caption="“下雪的路灯旁最是迷人。”">
+                    <img src="../images/精选.2.jpg" alt="唱k" class="main-img" data-caption="“工作是工作，生活是什么，没想到大壮还是个歌手~”">
+                    <img src="../images/精选3.jpg" alt="可爱" class="main-img" data-caption="“猛男的外表也藏着一个可爱的心~”">
+                    <img src="../images/img.4.jpg" alt="刚睡醒ing~" class="main-img" data-caption="早上11点的真实状态。">
+                    <img src="../images/img.5.jpg" alt="看电影噜" class="main-img" data-caption="快乐肥宅水是本体。">
+                    <img src="../images/img.6.jpg" alt="梦中的大壮" class="main-img" data-caption="梦里可能在写代码。">
+                    <img src="../images/img.7.jpg" alt="打码保护" class="main-img" data-caption="为了保留一点尊严，打码处理。">
+                </div>
+                <!-- 主轮播左右按钮 -->
+                <button class="main-btn prev" id="mainPrevBtn">←</button>
+                <button class="main-btn next" id="mainNextBtn">→</button>
+                <!-- 主轮播底部描述 -->
+                <div class="carousel-caption" id="carouselCaption">“今天的风，甚是喧嚣。”</div>
+            </div>
+
+            <!-- 右侧缩略图（下一张） -->
+            <div class="carousel-thumb" id="nextThumb">
+                <img src="" alt="下一张缩略图" class="thumb-img" id="nextThumbImg">
+            </div>
+        </div>
+
+        <h2 class="section-title">✨ 朋友圈里的他 (P图版)</h2>
+        <div class="gallery-grid">
+            <div class="photo-card">
+                <div class="photo-box" style="background:#fab1a0;"><img src="../images/img.1.jpg" alt="45度仰天"></div>
+                <p class="caption">“今天的风，甚是喧嚣。”</p>
+            </div>
+            <div class="photo-card">
+                <div class="photo-box" style="background:#fab1a0;"><img src="../images/img.2.jpg" alt="认真学习"></div>
+                <p class="caption">“专注的男人最帅（其实在看动漫）。”</p>
+            </div>
+            <div class="photo-card">
+                <div class="photo-box" style="background:#fab1a0;"><img src="../images/img.3.jpg" alt="健身达人"></div>
+                <p class="caption">“流汗的感觉真好（去拍完照就走了）。”</p>
+            </div>
+        </div>
+
+        <br>
+        <hr><br>
+
+        <h2 class="section-title">🌚 现实生活中的他 (原相机直出)</h2>
+        <div class="gallery-grid">
+            <div class="photo-card">
+                <div class="photo-box" style="background:#dfe6e9;"><img src="../images/img.4.jpg" alt="刚睡醒ing~"></div>
+                <p class="caption">早上11点的真实状态。</p>
+            </div>
+            <div class="photo-card">
+                <div class="photo-box" style="background:#dfe6e9;"><img src="../images/img.5.jpg" alt="看电影噜"></div>
+                <p class="caption">快乐肥宅水是本体。</p>
+            </div>
+            <div class="photo-card">
+                <div class="photo-box" style="background:#dfe6e9;"><img src="../images/img.6.jpg" alt="梦中的大壮"></div>
+                <p class="caption">梦里可能在写代码。</p>
+            </div>
+            <div class="photo-card">
+                <div class="photo-box" style="background:#dfe6e9;"><img src="../images/img.7.jpg" alt="(图: 这种图不能再放了)"></div>
+                <p class="caption">为了保留一点尊严，打码处理。</p>
+            </div>
+            <div class="photo-card">
+                <div class="photo-box" style="background:#dfe6e9;"><img src="../images/img.8.jpg" alt="做饭的猛男"></div>
+                <p class="caption">今日份大刘炒蛋~</p>
+            </div>
+            <div class="photo-card">
+                <div class="photo-box" style="background:#dfe6e9;"><img src="../images/img.9.jpg" alt="熊猫"></div>
+                <p class="caption">跟着自己的好朋友在成都旅游，一起看圆圆的大熊猫~</p>
+            </div>
+        </div>
+
+        <br>
+        <h3>🔎 图片分析报告</h3>
+        <li style="font-size: 20px;">经过本站长精密的像素级分析，我们可以得出结论：大壮虽然不是第一眼帅哥，但属于耐看型。<br></li>
+        <li style="font-size: 20px; ">越看越像... 隔壁村的二傻子。<br></li>
+        <li style="font-size: 20px; ">但正是这种质朴的气质，才显得安全可靠，对吧？<br></li>
+
+        <div style="height: 100px;"></div> <!-- 撑高度 -->
+    </div>
+
+    <!-- Footer -->
+    <footer><!-- 页脚内容 -->
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="./index.html">首页动态</a>
+            <a href="subpages/page1.html">物种档案</a>
+            <a href="subpages/page2.html">真容曝光</a>
+            <a href="subpages/page3.html">择偶标准</a>
+            <a href="subpages/page4.html">联系大刘
+            </a>
+        </div>
+        <p class="disclaimer">免责声明：本网站内容纯属娱乐，最终解释权归305宿舍所有 (狗头)</p>
+        <p class="copyright">© 2024 期末大作业WIP. 保留所有权利。</p>
+        <p class="credits">305宿舍用爱与魔法制作 <span style="color: #e91e63;">❤</span></p>
+    </div>
+</footer>
+
+    <!-- ========== 轮播功能JS ======== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. 获取DOM元素
+            const prevThumb = document.getElementById('prevThumb');
+            const prevThumbImg = document.getElementById('prevThumbImg');
+            const nextThumb = document.getElementById('nextThumb');
+            const nextThumbImg = document.getElementById('nextThumbImg');
+            const mainImgs = document.getElementById('mainImgs');
+            const mainPrevBtn = document.getElementById('mainPrevBtn');
+            const mainNextBtn = document.getElementById('mainNextBtn');
+            const carouselCaption = document.getElementById('carouselCaption');
+            const mainImgList = document.querySelectorAll('.main-img');
+            const imgCount = mainImgList.length;
+            let currentIndex = 0;
+            let mainImgWidth = mainImgList[0]?.offsetWidth || 600;
+
+            // 2. 更新两侧缩略图 + 底部描述
+            function updateThumbs() {
+                if (imgCount === 0) return;
+                
+                const prevIndex = (currentIndex - 1 + imgCount) % imgCount;
+                const nextIndex = (currentIndex + 1) % imgCount;
+                
+                // 更新缩略图
+                prevThumbImg.src = mainImgList[prevIndex].src;
+                prevThumbImg.alt = mainImgList[prevIndex].alt;
+                nextThumbImg.src = mainImgList[nextIndex].src;
+                nextThumbImg.alt = mainImgList[nextIndex].alt;
+                
+                // 更新底部描述
+                carouselCaption.textContent = mainImgList[currentIndex].dataset.caption || '';
+            }
+
+            // 3. 更新主轮播位置
+            function updateMainCarousel() {
+                if (imgCount === 0) return;
+                
+                mainImgWidth = mainImgList[0].offsetWidth;
+                mainImgs.style.transform = `translateX(-${currentIndex * mainImgWidth}px)`;
+                updateThumbs();
+            }
+
+            // 4. 切换图片函数（增加动画反馈）
+            function switchImg(offset) {
+                currentIndex = (currentIndex + offset + imgCount) % imgCount;
+                // 点击时添加轻微缩放动画
+                mainImgs.style.transform = `translateX(-${currentIndex * mainImgWidth}px) scale(0.98)`;
+                setTimeout(() => {
+                    mainImgs.style.transform = `translateX(-${currentIndex * mainImgWidth}px) scale(1)`;
+                }, 100);
+                updateMainCarousel();
+            }
+
+            // 5. 绑定事件
+            prevThumb?.addEventListener('click', () => switchImg(-1));
+            nextThumb?.addEventListener('click', () => switchImg(1));
+            mainPrevBtn?.addEventListener('click', () => switchImg(-1));
+            mainNextBtn?.addEventListener('click', () => switchImg(1));
+
+            // 6. 窗口大小变化适配
+            window.addEventListener('resize', updateMainCarousel);
+
+            // 7. 初始化
+            updateMainCarousel();
+
+            // 自动轮播（5秒/次，鼠标悬停暂停）
+            let autoPlayTimer = setInterval(() => {
+                switchImg(1);
+            }, 3000);
+
+            document.querySelector('.carousel-container')?.addEventListener('mouseenter', () => {
+                clearInterval(autoPlayTimer);
+            });
+
+            document.querySelector('.carousel-container')?.addEventListener('mouseleave', () => {
+                autoPlayTimer = setInterval(() => {
+                    switchImg(1);
+                }, 5000);
+            });
+        });
+    </script>
+
+</body>
+</html>
